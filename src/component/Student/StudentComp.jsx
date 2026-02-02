@@ -10,16 +10,8 @@ const StudentComp = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    // Add more dummy data to reach 100 students for pagination
-    const allStudents = [...Array(100)].map((_, index) => {
-        const baseStudent = studentsData[index % studentsData.length];
-        return {
-            ...baseStudent,
-            id: index + 1,
-            name: `${baseStudent.name.split(' ')[0]} ${index + 1}`,
-            studentId: `#${123456789 + index}`
-        };
-    });
+    // Use actual students data
+    const allStudents = studentsData;
 
     // Pagination logic
     const totalPages = Math.ceil(allStudents.length / itemsPerPage);

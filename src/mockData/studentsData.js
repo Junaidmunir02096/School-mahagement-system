@@ -76,5 +76,57 @@ export const studentsData = [
         grade: "VII A",
         gradeColor: "bg-[#FCC43E]",
         avatar: "JA"
-    }
+    },
+     {
+        id: 1,
+        name: "Samanta William",
+        studentId: "#123456789",
+        date: "March 25, 2021",
+        parentName: "Mana William",
+        city: "Jakarta",
+        phone: "+1234567890",
+        email: "samanta@email.com",
+        grade: "VII A",
+        gradeColor: "bg-[#FB7D5B]",
+        avatar: "SW"
+    },
+    {
+        id: 2,
+        name: "Tony Soap",
+        studentId: "#123456789",
+        date: "March 25, 2021",
+        parentName: "James Soap",
+        city: "Jakarta",
+        phone: "+1234567890",
+        email: "tony@email.com",
+        grade: "VII B",
+        gradeColor: "bg-[#FCC43E]",
+        avatar: "TS"
+    },
+    {
+        id: 3,
+        name: "Karen Hope",
+        studentId: "#123456789",
+        date: "March 25, 2021",
+        parentName: "Justin Hope",
+        city: "Jakarta",
+        phone: "+1234567890",
+        email: "karen@email.com",
+        grade: "VII C",
+        gradeColor: "bg-[#4D44B5]",
+        avatar: "KH"
+    },
+    {
+        id: 4,
+        name: "Jordan Nico",
+        studentId: "#123456789",
+        date: "March 25, 2021",
+        parentName: "Amanda Nico",
+        city: "Jakarta",
+        phone: "+1234567890",
+        email: "jordan@email.com",
+        grade: "VII A",
+        gradeColor: "bg-[#FCC43E]",
+        avatar: "JN"
+    },
 ];

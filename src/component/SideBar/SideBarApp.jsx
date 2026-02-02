@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SideBarApp = () => {
-    const [active, setActive] = useState('Dashbord');
+    const [active, setActive] = useState('');
     const navigate = useNavigate();
 
     const menuItems = [
