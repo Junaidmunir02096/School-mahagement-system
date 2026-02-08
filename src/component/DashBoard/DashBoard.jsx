@@ -27,7 +27,7 @@ const DashBoard = () => {
                         <p className="text-[#A098AE] text-[15px] font-[300]">Students</p>
                         <h1>935</h1>
                     </div>
-                </div>
+                </div>  
                 <div className="flex gap-[20px] items-center ">
                     <div className="bg-[#FB7D5B] text-[#fff] h-[40px] w-[40px] flex items-center justify-center rounded-full ">
                         <img src={StudentIcon} alt="Student" className="h-[30px]  w-[30px] text-[10px] p-[2px] rounded-full brightness-0 invert" />
@@ -59,7 +59,7 @@ const DashBoard = () => {
                 </div>
             </div>
             <div className="w-full min-h-[300px] bg-[#fff] mt-[20px] rounded-[20px]">
-                <SchoolPerformanceChart />
+                <SchoolPerformanceChart title="School Performance" />
             </div>
             <div className="flex justify-between">
                 <div className="w-[50%] min-h-[300px] bg-[#fff] mt-[20px] rounded-[20px]">

@@ -26,12 +26,10 @@ const data = [
   { month: "Dec", thisWeek: 30, lastWeek: 40 },
 ];
 
-export default function SchoolPerformanceChart() {
+export default function SchoolPerformanceChart({ title }) {
   return (
     <div className="bg-white rounded-xl p-5 shadow-md">
-            <h2 className="text-xl font-bold p-[20px]">School Performance</h2>
-            
-
+            <h2 className="text-xl font-bold p-[20px]">{title}</h2>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>
           <defs>
