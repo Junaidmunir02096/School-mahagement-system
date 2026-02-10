@@ -1,0 +1,27 @@
+.responsive-container {
+    display: flex;
+    width: 100%;
+    gap: 2rem;
+    margin-top: 20px;
+}
+
+.responsive-left {
+    width: 60%;
+}
+
+.responsive-right {
+    width: 40%;
+}
+
+/* Responsive - Stack vertically below 1280px */
+@media (max-width: 1500px) {
+    .responsive-container {
+        flex-direction: column;
+    }
+    
+    .responsive-left,
+    .responsive-right {
+        width: 100%;
+    }
+}
+

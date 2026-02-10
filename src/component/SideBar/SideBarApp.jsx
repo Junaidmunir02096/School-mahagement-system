@@ -9,12 +9,13 @@ import FoodIcon from "../../assets/SideBarIcone/Food.png";
 import UserIcon from "../../assets/SideBarIcone/User.png";
 import ChatIcon from "../../assets/SideBarIcone/Chat.png";
 import LatestActivityIcon from "../../assets/SideBarIcone/Activity.png";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const SideBarApp = () => {
     const [active, setActive] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
 
     const menuItems = [
         { label: 'Dashbord', path: '/dashboard', icon: <img src={HomeIcon} alt="Home" className="w-[20px] h-[20px]" /> },
@@ -27,6 +28,14 @@ const SideBarApp = () => {
         { label: 'Chat', path: '/chat', icon: <img src={ChatIcon} alt="Classes" className="w-[20px] h-[20px]" /> },
         { label: 'Latest Activity', path: '/latest-activity', icon: <img src={LatestActivityIcon} alt="Classes" className="w-[20px] h-[20px]" /> },
     ]
+
+    // Set active state based on current path
+    useEffect(() => {
+        const currentItem = menuItems.find(item => item.path === location.pathname);
+        if (currentItem) {
+            setActive(currentItem.label);
+        }
+    }, [location.pathname]);
 
     return (
         <div className="bg-[#4D44B5] h-screen w-[310px]">

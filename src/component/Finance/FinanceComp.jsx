@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faUserGraduate, faChalkboardTeacher, faCoins } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faUserGraduate, faChalkboardTeacher, faCoins,  } from "@fortawesome/free-solid-svg-icons";
 import StudentIcon from "../../assets/SideBarIcone/Student.png";
 import FinanaceIcon from "../../assets/SideBarIcone/Finance.png";
 import SchoolPerformanceChart from "../DashBoard/SchoolPerformanceChart";
-
-
+import UnpaidStudents from "../DashBoard/UnpaidStudents";
+import SchoolExpense from "./schoolExpense";
+import './FinanceComp.css';
 
 const FinanceComp = () => {
-
 
 
     return (
@@ -76,6 +76,14 @@ const FinanceComp = () => {
             </div>
             <div className="w-full min-h-[300px] bg-[#fff] mt-[20px] rounded-[20px]">
                 <SchoolPerformanceChart title="Balance Analytics" />
+            </div>
+            <div className="responsive-container">
+                 <div className="responsive-left">
+                     <UnpaidStudents  />
+                 </div>
+                 <div className="responsive-right">
+                     <SchoolExpense />
+                 </div>
             </div>
         </div>
     )

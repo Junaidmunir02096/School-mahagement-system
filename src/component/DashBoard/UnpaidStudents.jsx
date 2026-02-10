@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { FaUser, FaPrint, FaEllipsisH } from "react-icons/fa";
+import {FaEllipsisH } from "react-icons/fa";
 import UserIcon from "../../assets/SideBarIcone/User.png";
 import PrintIcon from "../../assets/SideBarIcone/print.png"
-import LeftIcon from "../../assets/SideBarIcone/VectorLeft.png"
-import RightIcon from "../../assets/SideBarIcone/VectorRight.png"
+import Pagination from "../commonComponent/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
@@ -23,6 +22,7 @@ export default function UnpaidStudents() {
     const [page, setPage] = useState(1);
     const perPage = 5;
 
+    // const 
     const start = (page - 1) * perPage;
     const currentData = studentsData.slice(start, start + perPage);
     const totalPages = Math.ceil(studentsData.length / perPage);
@@ -85,46 +85,14 @@ export default function UnpaidStudents() {
                 ))}
             </div>
 
-            {/* Footer */}
-            <div className="flex justify-between items-center mt-10">
-                <p className="text-[#A098AE] text-sm">
-                    Showing <span className="font-bold text-[#303972]">{start + 1}-{Math.min(start + perPage, studentsData.length)}</span> from{" "}
-                    <span className="font-bold text-[#303972]">{studentsData.length}</span> data
-                </p>
-
                 {/* Pagination */}
-                <div className="flex gap-[10px] items-center gap-2">
-                    <button
-                        disabled={page === 1}
-                        onClick={() => setPage(page - 1)} 
-                        className="flex bg-transparent border-none items-center justify-center text-[#A098AE] hover:text-[#303972] disabled:opacity-50"
-                    >
-                        {/* <span className="text-2xl"><i class="fa-solid fa-angle-left"></i></span> */}
-                        <FontAwesomeIcon className="text-[15px] cursor-pointer" icon={faAngleLeft} />
-                    </button>
-
-                    {[...Array(totalPages)].map((_, i) => (
-                        <button
-                            key={i}
-                            onClick={() => setPage(i + 1)}
-                            className={`w-[35px] h-[35px] cursor-pointer rounded-full flex items-center justify-center font-bold text-sm transition-colors ${page === i + 1
-                                    ? "bg-[#4D44B5] text-[#fff] shadow-[#4D44B5]/30"
-                                    : "border border-transparent text-[#303972] hover:bg-gray-50"
-                                }`}
-                        >
-                            {i + 1}
-                        </button>
-                    ))}
-
-                    <button
-                        disabled={page === totalPages}
-                        onClick={() => setPage(page + 1)}
-                        className="flex items-center bg-transparent border-none justify-center text-[#A098AE] hover:text-[#303972] disabled:opacity-50"
-                    >
-                        <FontAwesomeIcon className="text-[15px] cursor-pointer" icon={faAngleRight} />
-                    </button>
-                </div>
-            </div>
+                <Pagination
+                        currentPage={page}
+                        totalPages={totalPages}
+                        totalItems={studentsData.length}
+                        itemsPerPage={perPage}
+                        onPageChange={setPage}
+                    />
         </div>
     );
 }
