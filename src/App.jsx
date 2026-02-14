@@ -10,6 +10,8 @@ import FoodComp from "./component/Food/FoodComp";
 import UserComp from "./component/User/UserComp";
 import ChatComp from "./component/Chat/ChatComp";
 import LatestActivityComp from "./component/LatestActivity/LatestActivityComp";
+import FoodDetails from "./component/Food/components/FoodDetails/FoodDetails";
+
 const App = () => {
   return (
     <div className="flex">
@@ -22,6 +24,7 @@ const App = () => {
           <Route path="/event" element={<EventComp />} />
           <Route path="/finance" element={<FinanceComp />} />
           <Route path="/food" element={<FoodComp />} />
+          <Route path="/food-details/:id" element={<FoodDetails/>}/>
           <Route path="/user" element={<UserComp />} />
           <Route path="/chat" element={<ChatComp />} />
           <Route path="/latest-activity" element={<LatestActivityComp />} />
