@@ -1,7 +1,7 @@
 
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faStar, faChartBar, faArrowTrendUp, faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faStar,faArrowLeft, faChartBar, faArrowTrendUp, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import ProgressCircle from "../PercentageCircle";
 
 const FoodDetails = () => {
@@ -36,7 +36,8 @@ const FoodDetails = () => {
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
             <div className="flex justify-between items-center">
-                <div>
+                <div className="flex items-center">
+                    <FontAwesomeIcon icon={faArrowLeft} className="text-[#4D44B5] text-[20px] cursor-pointer mr-[10px]" onClick={() => navigate(-1)} />
                 <h1 className="text-[36px] font-[700] text-center p-[20px] text-[#4D44B5]">Food Details</h1>
 
                 </div>
