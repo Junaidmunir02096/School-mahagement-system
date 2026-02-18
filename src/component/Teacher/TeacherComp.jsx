@@ -28,9 +28,9 @@ const TeacherComp = () => {
     };
 
     return (
-        <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
+            <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
             <h1 className="text-[36px] font-[700] p-[20px] text-[#4D44B5]">Teacher</h1>
-            <SearchHeader />
+            <SearchHeader title={'Add Teacher'}  />
 
             {/* Teacher Cards Grid */}
             <div className="bg-white rounded-[20px] mt-[20px] p-[30px]">

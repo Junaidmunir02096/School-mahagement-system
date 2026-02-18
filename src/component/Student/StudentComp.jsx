@@ -52,9 +52,8 @@ const StudentComp = () => {
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
             <h1 className="text-[36px] font-[700] p-[20px] text-[#4D44B5]">Student</h1>
-            <SearchHeader />
+            <SearchHeader title={'Add Student'} />
 
-            {/* Data Table */}
             <div className="bg-white rounded-[20px] mt-[20px] p-[20px]">
                 <table className="w-full">
                     <thead>

@@ -11,6 +11,7 @@ import UserComp from "./component/User/UserComp";
 import ChatComp from "./component/Chat/ChatComp";
 import LatestActivityComp from "./component/LatestActivity/LatestActivityComp";
 import FoodDetails from "./component/Food/components/FoodDetails/FoodDetails";
+import AddTeacher from "./component/Teacher/AddTeacher/AddTeacher"; 
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/students" element={<StudentComp />} />
           <Route path="/teachers" element={<TeacherComp />} />
+          <Route path="/teachers/add-teacher" element={<AddTeacher />} />
           <Route path="/event" element={<EventComp />} />
           <Route path="/finance" element={<FinanceComp />} />
           <Route path="/food" element={<FoodComp />} />
