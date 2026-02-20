@@ -12,6 +12,7 @@ import ChatComp from "./component/Chat/ChatComp";
 import LatestActivityComp from "./component/LatestActivity/LatestActivityComp";
 import FoodDetails from "./component/Food/components/FoodDetails/FoodDetails";
 import AddTeacher from "./component/Teacher/AddTeacher/AddTeacher"; 
+import AddStudent from "./component/Student/AddStudent/AddStudent";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Routes>
           <Route path="/dashboard" element={<DashBoard />} />
           <Route path="/students" element={<StudentComp />} />
+          <Route path="/students/add-student" element={<AddStudent />} />
           <Route path="/teachers" element={<TeacherComp />} />
           <Route path="/teachers/add-teacher" element={<AddTeacher />} />
           <Route path="/event" element={<EventComp />} />
@@ -32,7 +34,6 @@ const App = () => {
           <Route path="/latest-activity" element={<LatestActivityComp />} />
         </Routes>
       </div>
-
     </div>
   )
 }
