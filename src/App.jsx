@@ -8,7 +8,7 @@ import EventComp from "./component/Event/EventComp";
 import FinanceComp from "./component/Finance/FinanceComp";
 import FoodComp from "./component/Food/FoodComp";
 import UserComp from "./component/User/UserComp";
-import ChatComp from "./component/Chat/ChatComp";
+import ChatComp from "./component/Chat/ChatPage";
 import LatestActivityComp from "./component/LatestActivity/LatestActivityComp";
 import FoodDetails from "./component/Food/components/FoodDetails/FoodDetails";
 import AddTeacher from "./component/Teacher/AddTeacher/AddTeacher"; 
