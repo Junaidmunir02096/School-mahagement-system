@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const useInView = (threshold = 0.15) => {
   const ref = useRef(null);
@@ -140,7 +141,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [count, setCount] = useState({ s: 0, sc: 0, sat: 0 });
-
+  const navigate = useNavigate();
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler);
@@ -205,7 +206,7 @@ export default function App() {
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <button className="text-sm font-medium text-[#4D44B5] hover:opacity-80 transition-opacity px-4 py-2">Log In</button>
+            <button  onClick={() => navigate("/login")} className="text-sm font-medium text-[#4D44B5] hover:opacity-80 transition-opacity px-4 py-2">Log In</button>
             <button className="text-sm font-semibold text-white px-5 py-2.5 rounded-xl transition-all hover:shadow-lg hover:scale-105" style={{ background: "linear-gradient(135deg, #4D44B5, #7C74D8)" }}>Get Started Free</button>
           </div>
           <button className="md:hidden text-gray-700" onClick={() => setMobileOpen(!mobileOpen)}>

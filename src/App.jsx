@@ -14,6 +14,8 @@ import LatestActivityComp from "./component/LatestActivity/LatestActivityComp";
 import FoodDetails from "./component/Food/components/FoodDetails/FoodDetails";
 import AddTeacher from "./component/Teacher/AddTeacher/AddTeacher";
 import AddStudent from "./component/Student/AddStudent/AddStudent";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (
@@ -21,7 +23,8 @@ const App = () => {
       
       {/* 🔹 Public Route (NO SIDEBAR) */}
       <Route path="/" element={<LandingPage />} />
-
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       {/* 🔹 Dashboard Layout (WITH SIDEBAR) */}
       <Route element={<DashboardLayout />}>
 
