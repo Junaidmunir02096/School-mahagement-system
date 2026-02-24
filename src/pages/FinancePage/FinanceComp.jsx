@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faUserGraduate, faChalkboardTeacher, faCoins,  } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import StudentIcon from "../../assets/SideBarIcone/Student.png";
 import FinanaceIcon from "../../assets/SideBarIcone/Finance.png";
-import SchoolPerformanceChart from "../DashBoard/SchoolPerformanceChart";
-import UnpaidStudents from "../DashBoard/UnpaidStudents";
-import SchoolExpense from "./schoolExpense";
-import './FinanceComp.css';
+import SchoolPerformanceChart from "../../component/DashBoard/SchoolPerformanceChart";
+import UnpaidStudents from "../../component/DashBoard/UnpaidStudents";
+import SchoolExpense from "../../component/Finance/schoolExpense";
+// import './FinanceComp.css';
 
 const FinanceComp = () => {
 

@@ -1,8 +1,8 @@
 
-import AuthLayout from "../component/Auth/AuthLayout";
+import AuthLayout from "../../component/Auth/AuthLayout";
 import { FcGoogle } from "react-icons/fc";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../component/Auth/firebase";
+import { auth } from "../../component/Auth/firebase";
 import { useState } from "react";
 const Signup = () => {
 

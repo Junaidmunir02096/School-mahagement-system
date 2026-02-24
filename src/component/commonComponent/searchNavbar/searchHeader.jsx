@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { faMagnifyingGlass, faPlus, faChevronDown, faTimes } from "@fortawesome/free-solid-svg-icons";
-import AddTeacher from "../../Teacher/AddTeacher/AddTeacher";
-import AddStudent from "../../Student/AddStudent/AddStudent";
+import AddTeacher from "../../Teacher/AddTeacher";
+import AddStudent from "../../Student/AddStudent";
 import { useNavigate } from "react-router-dom";
 
 const SearchHeader = ({ title }) => {

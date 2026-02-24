@@ -1,5 +1,4 @@
-import React from "react";
-import AuthLayout from "../component/Auth/AuthLayout";
+import AuthLayout from "../../component/Auth/AuthLayout";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {

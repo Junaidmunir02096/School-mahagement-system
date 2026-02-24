@@ -4,10 +4,10 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import StudentIcon from "../../assets/SideBarIcone/Student.png";
 import EventIcon from "../../assets/SideBarIcone/Calendar.png";
 import FoodIcon from "../../assets/SideBarIcone/Food.png";
-import SchoolPerformanceChart from "./SchoolPerformanceChart";
-import SchoolFinanceChart from "./SchoolFinanceChart";
-import BasicDateCalendar from "./SchoolCalendar"
-import UnpaidStudents from "./UnpaidStudents"
+import SchoolPerformanceChart from "../../component/DashBoard/SchoolPerformanceChart";
+import SchoolFinanceChart from "../../component/DashBoard/SchoolFinanceChart";
+import BasicDateCalendar from "../../component/DashBoard/SchoolCalendar"
+import UnpaidStudents from "../../component/DashBoard/UnpaidStudents"
 const DashBoard = () => {
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">

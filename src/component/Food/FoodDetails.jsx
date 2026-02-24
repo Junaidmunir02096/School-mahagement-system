@@ -2,7 +2,7 @@
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faStar,faArrowLeft, faChartBar, faArrowTrendUp, faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import ProgressCircle from "../PercentageCircle";
+import ProgressCircle from "./PercentageCircle";
 
 const FoodDetails = () => {
     const { id } = useParams();

@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass, faStar, faChartBar, faArrowTrendUp, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import Pagination from "../commonComponent/Pagination";
-import './FoodComp.css';
-import ProgressCircle from "./components/PercentageCircle.jsx";
+import Pagination from "../../component/commonComponent/Pagination.jsx";
+import ProgressCircle from "../../component/Food/PercentageCircle.jsx";
 import { foodData } from "../../mockData/mockFoodData.js";
+import '../../component/Food/FoodComp.css';
 
 const FoodComp = () => {
     const [activeFilter, setActiveFilter] = useState('All Menus');
@@ -17,7 +17,6 @@ const FoodComp = () => {
     const handleImageClick = (food) => {
         navigate(`/food-details/${food.id}`, { state: { food } });
     };
-
 
     const filteredFood = activeFilter === 'All Menus' 
         ? foodData 

@@ -1,10 +1,10 @@
-import SearchHeader from "../commonComponent/searchNavbar/searchHeader";
-import Pagination from "../commonComponent/Pagination";
+import SearchHeader from "../../component/commonComponent/searchNavbar/searchHeader";
+import Pagination from "../../component/commonComponent/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { teacherData } from "../../mockData/teacherData";
-
+    
 const TeacherComp = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;

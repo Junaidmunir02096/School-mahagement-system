@@ -1,5 +1,5 @@
-import SearchHeader from "../commonComponent/searchNavbar/searchHeader";
-import Pagination from "../commonComponent/Pagination";
+import SearchHeader from "../../component/commonComponent/searchNavbar/searchHeader";
+import Pagination from "../../component/commonComponent/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
