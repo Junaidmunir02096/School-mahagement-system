@@ -47,7 +47,7 @@ const Signup = () => {
             placeholder="Enter your full name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#4D44B5] outline-none"
+            className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
 
@@ -61,7 +61,7 @@ const Signup = () => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#4D44B5] outline-none"
+            className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
 
@@ -75,7 +75,7 @@ const Signup = () => {
             placeholder="Create password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#4D44B5] outline-none"
+            className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
 
@@ -89,14 +89,14 @@ const Signup = () => {
             placeholder="Confirm password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
-            className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#4D44B5] outline-none"
+            className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
 
         {/* Sign Up Button */}
         <button
           type="submit"
-          className="w-full bg-[#4D44B5] text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          className="w-full bg-[#4D44B5] text-white py-2 rounded-[5rem] hover:bg-indigo-700 transition duration-300"
         >
           Create Account
         </button>
@@ -111,7 +111,7 @@ const Signup = () => {
         {/* Google Signup */}
         <button
           type="button"
-          className="w-full flex items-center justify-center gap-3 border py-2 rounded-lg hover:bg-gray-100 transition"
+          className="w-full flex items-center justify-center gap-3 border-none py-2 rounded-[5rem] bg-[#99ccff] transition"
         >
           <FcGoogle size={22} />
           Sign up with Google

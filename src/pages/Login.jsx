@@ -18,7 +18,7 @@ const Login = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#4D44B5] outline-none"
+            className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
 
@@ -30,7 +30,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Enter your password"
-            className="w-full mt-1 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-[#4D44B5] outline-none"
+            className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
 
@@ -44,7 +44,7 @@ const Login = () => {
         {/* Login Button */}
         <button
           type="submit"
-          className="w-full bg-[#4D44B5] text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+          className="w-full cursor-pointer bg-[#4D44B5] text-white py-2 rounded-[5rem] transition duration-300"
         >
           Login
         </button>
@@ -59,7 +59,7 @@ const Login = () => {
         {/* Google Login */}
         <button
           type="button"
-          className="w-full flex items-center justify-center gap-3 border py-2 rounded-lg hover:bg-gray-100 transition"
+          className="w-full cursor-pointer flex items-center justify-center gap-3 border-none py-2 rounded-[5rem] bg-[#99ccff] transition"
         >
           <FcGoogle size={22} />
           Continue with Google
