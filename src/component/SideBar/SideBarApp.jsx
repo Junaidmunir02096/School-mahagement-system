@@ -1,5 +1,5 @@
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faHouse } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 import HomeIcon from "../../assets/SideBarIcone/Home.png";
 import StudentIcon from "../../assets/SideBarIcone/Student.png";
 import TeacherIcon from "../../assets/SideBarIcone/Teacher.png";
@@ -21,6 +21,7 @@ const SideBarApp = () => {
         { label: 'Dashbord', path: '/dashboard', icon: <img src={HomeIcon} alt="Home" className="w-[20px] h-[20px]" /> },
         { label: 'Students', path: '/students', icon: <img src={StudentIcon} alt="Student" className="w-[20px] h-[20px]" /> },
         { label: 'Teachers', path: '/teachers', icon: <img src={TeacherIcon} alt="Teacher" className="w-[20px] h-[20px]" /> },
+        { label: 'Attendance', path: '/attendance', icon: <FontAwesomeIcon icon={faClipboardList} className="text-[20px]" /> },
         { label: 'Event', path: '/event', icon: <img src={ClassesIcon} alt="Classes" className="w-[20px] h-[20px]" /> },
         { label: 'Finance', path: '/finance', icon: <img src={FinanaceIcon} alt="Classes" className="w-[20px] h-[20px]" /> },
         { label: 'Food', path: '/food', icon: <img src={FoodIcon} alt="Classes" className="w-[20px] h-[20px]" /> },

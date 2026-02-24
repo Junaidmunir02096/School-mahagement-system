@@ -14,6 +14,9 @@ import LatestActivityComp from "../component/LatestActivity/LatestActivityComp";
 import FoodDetails from "../component/Food/FoodDetails";
 import AddTeacher from "../component/Teacher/AddTeacher";
 import AddStudent from "../component/Student/AddStudent";
+import AttendancePage from "../pages/AttendancePage/AttendancePage";
+import MarkAttendance from "../pages/AttendancePage/MarkAttendance";
+import AttendanceReport from "../pages/AttendancePage/AttendanceReport";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 
@@ -32,6 +35,9 @@ const AppRoutes = () => {
         <Route path="/students/add-student" element={<AddStudent />} />
         <Route path="/teachers" element={<TeacherComp />} />
         <Route path="/teachers/add-teacher" element={<AddTeacher />} />
+        <Route path="/attendance" element={<AttendancePage />} />
+        <Route path="/attendance/mark" element={<MarkAttendance />} />
+        <Route path="/attendance/report" element={<AttendanceReport />} />
         <Route path="/event" element={<EventComp />} />
         <Route path="/finance" element={<FinanceComp />} />
         <Route path="/food" element={<FoodComp />} />
