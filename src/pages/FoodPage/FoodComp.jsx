@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
 import Pagination from "../../component/commonComponent/Pagination.jsx";
 import ProgressCircle from "../../component/Food/PercentageCircle.jsx";
-import { foodData } from "../../mockData/mockFoodData.js";
+import { foodData } from "../../utils/mockData/mockFoodData.js";
 import '../../component/Food/FoodComp.css';
 
 const FoodComp = () => {

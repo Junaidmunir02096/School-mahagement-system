@@ -3,7 +3,7 @@ import Pagination from "../../component/commonComponent/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { studentsData } from "../../mockData/studentsData";
+import { studentsData } from "../../utils/mockData/studentsData";
 
 const StudentComp = () => {
     const [selectedStudents, setSelectedStudents] = useState([]);

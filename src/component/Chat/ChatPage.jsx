@@ -1,7 +1,7 @@
 import { useState } from "react";
 import ChatSidebar from "./components/chatSidebar.jsx";
 import ChatWindow from "./components/ChatWindow.jsx";
-import { chatMockData } from "../../mockData/chatMockData.js";
+import { chatMockData } from "../../utils/mockData/chatMockData.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 const ChatPage = () => {
