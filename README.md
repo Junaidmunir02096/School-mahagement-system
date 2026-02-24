@@ -28,3 +28,4 @@ This system helps schools digitize their management process and reduce manual wo
 
 - Frontend: React.js
 - Styling: Tailwind 
+- Animation: Framer Motion 
