@@ -58,7 +58,7 @@ const SideBarApp = () => {
                                 className={`w-[80%] cursor-pointer rounded-tl-[25px] rounded-bl-[25px] flex items-center p-[10px] mt-[10px] transition-colors duration-300
                                 ${isActive ? 'bg-[#fff] text-[#4D44B5]' : 'text-[#C1BBEB] text-[#4D44B5]'}`}
                             >
-                                <span className="text-3xl mr-4 ">{item.icon}</span>
+                                <span className="mr-4 ">{item.icon}</span>
                                 <span className="text-[15px] font-Poppins ml-[10px]">{item.label}</span>
                             </div>
 

@@ -8,7 +8,13 @@ import SchoolPerformanceChart from "../../component/DashBoard/SchoolPerformanceC
 import SchoolFinanceChart from "../../component/DashBoard/SchoolFinanceChart";
 import BasicDateCalendar from "../../component/DashBoard/SchoolCalendar"
 import UnpaidStudents from "../../component/DashBoard/UnpaidStudents"
+import { useSelector } from "react-redux";
+import { selectStudentCount } from "../../store/slices/studentsSlice";
+import { selectTeacherCount } from "../../store/slices/teachersSlice";
+
 const DashBoard = () => {
+    const studentCount = useSelector(selectStudentCount);
+    const teacherCount = useSelector(selectTeacherCount);
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
             <div className="flex justify-between items-center">
@@ -25,7 +31,7 @@ const DashBoard = () => {
                     </div>
                     <div className="flex flex-col gap-[3px]">
                         <p className="text-[#A098AE] text-[15px] font-[300]">Students</p>
-                        <h1>935</h1>
+                        <h1>{studentCount}</h1>
                     </div>
                 </div>  
                 <div className="flex gap-[20px] items-center ">
@@ -34,7 +40,7 @@ const DashBoard = () => {
                     </div>
                     <div className="flex flex-col gap-[3px]">
                         <p className="text-[#A098AE] text-[15px] font-[300]">Teachers</p>
-                        <h1>735</h1>
+                        <h1>{teacherCount}</h1>
                     </div>
                 </div>
                 <div className="flex gap-[20px] items-center ">

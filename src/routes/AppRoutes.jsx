@@ -22,7 +22,7 @@ import Signup from "../pages/auth/Signup";
 
 const AppRoutes = () => {
   return (
-        <Routes>
+    <Routes>
       {/* 🔹 Public Routes */}
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />

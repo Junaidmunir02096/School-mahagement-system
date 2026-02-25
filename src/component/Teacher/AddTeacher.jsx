@@ -1,8 +1,14 @@
 
 
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addTeacher } from "../../store/slices/teachersSlice";
 
 const AddTeacher = () => {
+    const dispatch  = useDispatch();
+    const navigate  = useNavigate();
+
     const [formData, setFormData] = useState({
         photo: null,
         firstName: '',
@@ -12,10 +18,16 @@ const AddTeacher = () => {
         subject: '',
         email: '',
         phone: '',
-        address: ''
+        address: '',
+        university: '',
+        degree: '',
+        city: '',
+        startDate: '',
+        endDate: '',
     });
 
     const [addressLength, setAddressLength] = useState(0);
+    const [submitted, setSubmitted] = useState(false);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -39,9 +51,23 @@ const AddTeacher = () => {
         }
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!formData.firstName.trim() || !formData.lastName.trim()) return;
+        dispatch(addTeacher(formData));
+        setSubmitted(true);
+        setTimeout(() => navigate("/teachers"), 1200);
+    };
+
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] px-[15px]">
             <h1 className="text-[36px] font-[700] p-[20px] text-[#4D44B5]">Add New Teacher</h1>
+
+            {submitted && (
+                <div className="mx-[20px] mb-[10px] bg-[#E8F8F0] border border-[#4CAF79] text-[#4CAF79] px-[20px] py-[12px] rounded-[12px] font-[600]">
+                    ✅ Teacher added successfully! Redirecting…
+                </div>
+            )}
 
             {/* Header */}
             <div className="bg-[#fff] rounded-[20px] mb-[20px]">
@@ -271,9 +297,8 @@ const AddTeacher = () => {
             </div>
 
             <div className="w-[100%] flex justify-end gap-[20px] bg-[#F5F5F5] py-[20px] px-[20px] rounded-b-[20px]" >
-                <button className="px-[30px] py-[12px] border-[#4D44B5] rounded-full  text-[#4D44B5] text-[16px] font-[400] ">Save as Draft</button>
-                <button className="px-[30px] py-[12px] rounded-full bg-[#5B5BE0] text-[#fff] text-[16px] font-[400]">Submit</button>
-
+                <button type="button" className="px-[30px] py-[12px] border-[#4D44B5] rounded-full  text-[#4D44B5] text-[16px] font-[400] ">Save as Draft</button>
+                <button type="button" onClick={handleSubmit} className="px-[30px] py-[12px] rounded-full bg-[#5B5BE0] text-[#fff] text-[16px] font-[400]">Submit</button>
             </div>
         </div>
     )

@@ -3,15 +3,16 @@ import Pagination from "../../component/commonComponent/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { studentsData } from "../../utils/mockData/studentsData";
+import { useSelector } from "react-redux";
+import { selectAllStudents } from "../../store/slices/studentsSlice";
 
 const StudentComp = () => {
     const [selectedStudents, setSelectedStudents] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
 
-    // Use actual students data
-    const allStudents = studentsData;
+    // Read from Redux store instead of static mockData
+    const allStudents = useSelector(selectAllStudents);
 
     // Pagination logic
     const totalPages = Math.ceil(allStudents.length / itemsPerPage);

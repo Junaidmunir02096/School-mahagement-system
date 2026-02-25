@@ -3,12 +3,15 @@ import Pagination from "../../component/commonComponent/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faEnvelope, faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { teacherData } from "../../utils/mockData/teacherData";
+import { useSelector } from "react-redux";
+import { selectAllTeachers } from "../../store/slices/teachersSlice";
 
 const TeacherComp = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 8;
-1
+
+    // Read from Redux store instead of static mockData
+    const teacherData = useSelector(selectAllTeachers);
     // Pagination logic
     const totalPages = Math.ceil(teacherData.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;

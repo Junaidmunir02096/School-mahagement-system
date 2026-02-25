@@ -1,35 +1,45 @@
 
 import AuthLayout from "../../component/Auth/AuthLayout";
 import { FcGoogle } from "react-icons/fc";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../services/firebase";
 import { useState } from "react";
-const Signup = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { signupUser, loginWithGoogle, clearError } from "../../store/slices/authSlice";
+import { selectAuthLoading, selectAuthError } from "../../store/slices/authSlice";
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Signup = () => {
+  const dispatch  = useDispatch();
+  const navigate  = useNavigate();
+  const loading   = useSelector(selectAuthLoading);
+  const authError = useSelector(selectAuthError);
+
+  const [email,           setEmail]           = useState("");
+  const [password,        setPassword]        = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [error, setError] = useState("");
+  const [name,            setName]            = useState("");
+  const [localError,      setLocalError]      = useState("");
 
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLocalError("");
 
-    if(password !== confirmPassword){
-      // alert("Passwords do not match!");
-      setError("Passwords do not match!");
+    if (password !== confirmPassword) {
+      setLocalError("Passwords do not match!");
       return;
     }
 
-    try{
-      await createUserWithEmailAndPassword(auth, email, password);
-      const user = auth.currentUser;
-      console.log("User registered:", user);
-      console.log('user register successfully');
-    }catch(error){
-      console.error("Error registering user:", error);
+    const result = await dispatch(signupUser({ email, password, name }));
+    if (signupUser.fulfilled.match(result)) {
+      navigate("/dashboard");
     }
-  }
+  };
+
+  const handleGoogle = async () => {
+    const result = await dispatch(loginWithGoogle());
+    if (loginWithGoogle.fulfilled.match(result)) {
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <AuthLayout
@@ -37,6 +47,13 @@ const Signup = () => {
       subtitle="Start managing your school efficiently"
     >
       <form className="space-y-4" onSubmit={handleRegister}>
+
+        {/* Error messages */}
+        {(localError || authError) && (
+          <div className="bg-red-50 border border-red-300 text-red-600 text-sm px-4 py-2 rounded-lg">
+            {localError || authError}
+          </div>
+        )}
 
         <div>
           <label className="block text-sm font-medium text-gray-600">
@@ -60,7 +77,7 @@ const Signup = () => {
             type="email"
             placeholder="Enter your email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); dispatch(clearError()); }}
             className="w-full mt-1 px-4 py-2 border-[#b1afc4] border rounded-[5rem] outline-none"
           />
         </div>
@@ -96,9 +113,10 @@ const Signup = () => {
         {/* Sign Up Button */}
         <button
           type="submit"
-          className="w-full bg-[#4D44B5] text-white py-2 rounded-[5rem] hover:bg-indigo-700 transition duration-300"
+          disabled={loading}
+          className="w-full bg-[#4D44B5] text-white py-2 rounded-[5rem] hover:bg-indigo-700 transition duration-300 disabled:opacity-60"
         >
-          Create Account
+          {loading ? "Creating account…" : "Create Account"}
         </button>
 
         {/* Divider */}
@@ -111,7 +129,9 @@ const Signup = () => {
         {/* Google Signup */}
         <button
           type="button"
-          className="w-full flex items-center justify-center gap-3 border-none py-2 rounded-[5rem] bg-[#99ccff] transition"
+          onClick={handleGoogle}
+          disabled={loading}
+          className="w-full flex items-center justify-center gap-3 border-none py-2 rounded-[5rem] bg-[#99ccff] transition disabled:opacity-60"
         >
           <FcGoogle size={22} />
           Sign up with Google
