@@ -120,7 +120,7 @@ const EventComp = () => {
                     <input type="text" placeholder="Search here..." className="outline-none ml-[10px] border-none ml-2 w-full text-[#A098AE] placeholder-[#A098AE]" />
                 </div>
             </div>
-            <div className="bg-[#9191912b] rounded-[5px] shadow-md p-[30px] max-w-[1200px]">
+            <div className="bg-[#9191912b] rounded-[5px] shadow-md p-[30px]">
                 {/* Header */}
                 <div className="flex justify-between items-center mb-[30px]">
                     <h1 className="text-[32px] font-[700] text-[#303972]">Calendar</h1>
