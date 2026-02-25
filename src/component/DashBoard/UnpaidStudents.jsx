@@ -3,26 +3,17 @@ import {FaEllipsisH } from "react-icons/fa";
 import UserIcon from "../../assets/SideBarIcone/User.png";
 import PrintIcon from "../../assets/SideBarIcone/print.png"
 import Pagination from "../commonComponent/Pagination";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
-
-const studentsData = [
-    { name: "Samantha William", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Tony Soap", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Jordan Nico", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Karen Hope", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Nadila Adja", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Alex John", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Chris Nolan", id: "123456789", class: "VII A", amount: 50036 },
-    { name: "Sara Khan", id: "123456789", class: "VII A", amount: 50036 },
-];
+import { useSelector, useDispatch } from "react-redux";
+import { selectUnpaidStudents, markAsPaid } from "../../store/slices/financeSlice";
 
 export default function UnpaidStudents() {
     const [page, setPage] = useState(1);
     const perPage = 5;
+    const dispatch = useDispatch();
 
-    // const 
+    // Read unpaid students from Redux store
+    const studentsData = useSelector(selectUnpaidStudents);
+
     const start = (page - 1) * perPage;
     const currentData = studentsData.slice(start, start + perPage);
     const totalPages = Math.ceil(studentsData.length / perPage);
@@ -39,7 +30,7 @@ export default function UnpaidStudents() {
             <div className="flex flex-col gap-[1vh]">
                 {currentData.map((student, index) => (
                     <div
-                        key={index}
+                        key={student.id}
                         className="flex items-center p-[10px] justify-between"
                     >
                         {/* Name Section */}
@@ -79,7 +70,11 @@ export default function UnpaidStudents() {
                         {/* Actions Section */}
                         <div className="flex items-center justify-evenly gap-6 text-[#A098AE] w-[10%] pr-4">
                             <img src={PrintIcon} alt="PrintIcon" className="cursor-pointer hover:text-[#303972]" />
-                            <FaEllipsisH className="text-[20px] cursor-pointer hover:text-[#303972]" />
+                            <FaEllipsisH
+                                className="text-[20px] cursor-pointer hover:text-[#4CAF79]"
+                                title="Mark as Paid"
+                                onClick={() => dispatch(markAsPaid(student.id))}
+                            />
                         </div>
                     </div>
                 ))}

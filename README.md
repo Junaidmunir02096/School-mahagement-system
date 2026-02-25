@@ -27,5 +27,6 @@ This system helps schools digitize their management process and reduce manual wo
 ## 🛠️ Technologies Used
 
 - Frontend: React.js
+- State Management: Redux Toolkit
 - Styling: Tailwind 
 - Animation: Framer Motion 

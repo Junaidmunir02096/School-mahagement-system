@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { submitAttendance } from "../../store/slices/attendanceSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faArrowLeft,
@@ -92,6 +94,7 @@ const SelectDropdown = ({ label, value, options, onChange }) => {
 // ─── Main Component ────────────────────────────────────────────────────────────
 const MarkAttendance = () => {
     const navigate = useNavigate();
+    const dispatch  = useDispatch();
 
     const [selectedClass,   setSelectedClass]   = useState(classesData[0].name);
     const [selectedSubject, setSelectedSubject] = useState(subjectsData[0]);
@@ -122,7 +125,17 @@ const MarkAttendance = () => {
         setRecords((prev) => prev.map((r) => ({ ...r, status })));
 
     const handleSubmit = () => {
-        // TODO: connect to Firebase / API in backend phase
+        // Find the classId matching the selected class name
+        const classObj = classesData.find((c) => c.name === selectedClass);
+        dispatch(
+            submitAttendance({
+                classId:   classObj?.id ?? selectedClass,
+                className: selectedClass,
+                subject:   selectedSubject,
+                date:      selectedDate,
+                records,
+            })
+        );
         setSubmitted(true);
     };
 
