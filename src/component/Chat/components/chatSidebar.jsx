@@ -8,14 +8,14 @@ const ChatSidebar = ({ allChats, onSelectChat, selectedChatId }) => {
   const displayedMessages = showAllMessages ? allChats : allChats.slice(0, 7);
 
   return (
-    <div className="bg-[#fff] rounded-tl-[20px] rounded-bl-[20px] p-[1.125rem] w-[24rem] shadow-sm">
+    <div className="bg-white rounded-tl-[20px] rounded-bl-[20px] p-[1.125rem] w-[24rem] shadow-sm">
       {/* Header */}
-      <div className="mb-[25px]">
-        <h2 className="text-[#303972] text-[24px] font-[700]">Messages</h2>
+      <div className="mb-3">
+        <h2 className="text-[#303972] text-[24px] font-bold">Messages</h2>
       </div>
 
       {/* Search Bar */}
-      <div className="flex items-center border-1 overflow-hidden bg-[#fff] rounded-full py-[12px] mb-[25px]">
+      <div className="flex items-center border overflow-hidden bg-[#fff] rounded-full py-[12px] mb-[12px]">
         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[20px]" />
         <input type="text" placeholder="Search here..." className="outline-none ml-[10px] border-none ml-2 w-full text-[#A098AE] placeholder-[#A098AE]" />
       </div>
