@@ -39,7 +39,6 @@ const FoodDetails = () => {
                 <div className="flex items-center">
                     <FontAwesomeIcon icon={faArrowLeft} className="text-[#4D44B5] text-[20px] cursor-pointer mr-[10px]" onClick={() => navigate(-1)} />
                 <h1 className="text-[36px] font-[700] text-center p-[20px] text-[#4D44B5]">Food Details</h1>
-
                 </div>
                 <div className="flex items-center bg-[#fff] rounded-full px-4 py-[10px] w-[300px]">
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[20px]" />

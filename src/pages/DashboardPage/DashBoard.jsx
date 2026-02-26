@@ -11,10 +11,12 @@ import UnpaidStudents from "../../component/DashBoard/UnpaidStudents"
 import { useSelector } from "react-redux";
 import { selectStudentCount } from "../../store/slices/studentsSlice";
 import { selectTeacherCount } from "../../store/slices/teachersSlice";
+import { selectEventCount } from "../../store/slices/eventsSlice";
 
 const DashBoard = () => {
     const studentCount = useSelector(selectStudentCount);
     const teacherCount = useSelector(selectTeacherCount);
+    const eventCount   = useSelector(selectEventCount);
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
             <div className="flex justify-between items-center">
@@ -49,7 +51,7 @@ const DashBoard = () => {
                     </div>
                     <div className="flex flex-col gap-[3px]">
                         <p className="text-[#A098AE] text-[15px] font-[300]">Events</p>
-                        <h1>40</h1>
+                        <h1>{eventCount}</h1>
                     </div>
                 </div>
                 <div className="flex gap-[20px] items-center ">

@@ -17,7 +17,6 @@ import {
 } from "recharts";
 import { todayClassAttendance, weeklyAttendanceSummary } from "../../utils/mockData/attendanceData";
 
-// ─── Custom Recharts Tooltip ──────────────────────────────────────────────────
 const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
         return (
@@ -34,7 +33,6 @@ const CustomTooltip = ({ active, payload, label }) => {
     return null;
 };
 
-// ─── Percentage badge helper ──────────────────────────────────────────────────
 const getPctStyle = (present, total) => {
     const pct = Math.round((present / total) * 100);
     if (pct >= 90) return { pct, color: "bg-[#E8F8F0] text-[#4CAF79]" };
@@ -47,7 +45,6 @@ const AttendancePage = () => {
     const [filterOpen, setFilterOpen] = useState(false);
     const [selectedFilter, setSelectedFilter] = useState("All Classes");
 
-    // ── Compute today's school-wide stats ─────────────────────────────────────
     const totalPresent     = todayClassAttendance.reduce((s, c) => s + c.present, 0);
     const totalAbsent      = todayClassAttendance.reduce((s, c) => s + c.absent,  0);
     const totalLate        = todayClassAttendance.reduce((s, c) => s + c.late,    0);

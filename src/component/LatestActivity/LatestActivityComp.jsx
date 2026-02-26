@@ -1,196 +1,238 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import {
+    faMagnifyingGlass,
+    faUserPlus,
+    faUserMinus,
+    faChalkboardUser,
+    faClipboardCheck,
+    faDollarSign,
+    faCalendarDays,
+    faCalendarMinus,
+} from "@fortawesome/free-solid-svg-icons";
+import { useState, useMemo } from "react";
+import { useSelector } from "react-redux";
+import { selectActivities, ACTIVITY_CONFIG } from "../../store/slices/activitiesSlice";
 
-const activityData = {
-    Today: [
-        {
-            id: 1,
-            date: "Monday, June 31 2020",
-            type: "task_created",
-            content: [
-                { text: "Karen Hope", bold: true },
-                { text: " has created new task at " },
-                { text: "History Lesson", color: "#FB7D5B" },
-            ],
-        },
-        {
-            id: 2,
-            date: "Monday, June 31 2020",
-            type: "reminder",
-            content: [
-                { text: "[REMINDER]", color: "#FB7D5B", bold: true },
-                { text: " Due date or " },
-                { text: "Science Homework", color: "#FB7D5B" },
-                { text: " task will be coming" },
-            ],
-        },
-        {
-            id: 3,
-            date: "Monday, June 31 2020",
-            type: "comment",
-            content: [
-                { text: "Tony Soap", bold: true },
-                { text: " commented at " },
-                { text: "Science Homework", color: "#FB7D5B" },
-            ],
-        },
-        {
-            id: 4,
-            date: "Monday, June 31 2020",
-            type: "files",
-            content: [
-                { text: "Samantha William", bold: true },
-                { text: " add 4 files on " },
-                { text: "Art Class", color: "#4D44B5" },
-            ],
-            images: [1, 2, 3, 4],
-        },
-        {
-            id: 5,
-            date: "Monday, June 31 2020",
-            type: "moved",
-            content: [
-                { text: "You", bold: true },
-                { text: " has moved " },
-                { text: '"Biology Homework"', color: "#4D44B5" },
-                { text: " task to " },
-                { text: "Done", bold: true },
-            ],
-        },
-    ],
-    Yesterday: [
-        {
-            id: 6,
-            date: "Sunday, June 30 2020",
-            type: "mention",
-            content: [
-                { text: "Johnny Ahmad", bold: true },
-                { text: " mentioned you at " },
-                { text: "Art Class", color: "#FCC43E" },
-                { text: "  Homework", color: "#FCC43E" },
-            ],
-        },
-        {
-            id: 7,
-            date: "Sunday, June 30 2020",
-            type: "mention",
-            content: [
-                { text: "Nadila Adja", bold: true },
-                { text: " mentioned you at " },
-                { text: "Programming Homework", color: "#4D44B5" },
-            ],
-        },
-    ],
+// ── Icon per activity type ────────────────────────────────────────────────────
+const ACTIVITY_ICONS = {
+    student_added:        faUserPlus,
+    student_deleted:      faUserMinus,
+    teacher_added:        faChalkboardUser,
+    teacher_deleted:      faUserMinus,
+    attendance_submitted: faClipboardCheck,
+    payment_received:     faDollarSign,
+    event_created:        faCalendarDays,
+    event_deleted:        faCalendarMinus,
 };
 
-const LatestActivityComp = () => {
-    const [searchQuery, setSearchQuery] = useState("");
+// ── Filter tabs ───────────────────────────────────────────────────────────────
+const FILTERS = [
+    { key: "all",        label: "All" },
+    { key: "students",   label: "Students",   types: ["student_added",   "student_deleted"] },
+    { key: "teachers",   label: "Teachers",   types: ["teacher_added",   "teacher_deleted"] },
+    { key: "attendance", label: "Attendance", types: ["attendance_submitted"] },
+    { key: "finance",    label: "Finance",    types: ["payment_received"] },
+    { key: "events",     label: "Events",     types: ["event_created",   "event_deleted"] },
+];
 
-    const renderContent = (content) =>
-        content.map((part, i) => (
+// ── Time grouping helpers ─────────────────────────────────────────────────────
+const GROUP_ORDER = ["Today", "Yesterday", "This Week", "Earlier"];
+
+const getGroup = (timestamp) => {
+    const diffHours = (Date.now() - new Date(timestamp).getTime()) / 3_600_000;
+    if (diffHours < 24)  return "Today";
+    if (diffHours < 48)  return "Yesterday";
+    if (diffHours < 168) return "This Week";
+    return "Earlier";
+};
+
+const formatTime = (ts) =>
+    new Date(ts).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" });
+
+const formatDate = (ts) =>
+    new Date(ts).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+
+// ── Component ─────────────────────────────────────────────────────────────────
+const LatestActivityComp = () => {
+    const activities    = useSelector(selectActivities);
+    const [search,    setSearch]    = useState("");
+    const [activeTab, setActiveTab] = useState("all");
+
+    // 1. Sort newest first, 2. filter by tab, 3. filter by search
+    const filtered = useMemo(() => {
+        let list = [...activities].sort(
+            (a, b) => new Date(b.timestamp) - new Date(a.timestamp)
+        );
+
+        if (activeTab !== "all") {
+            const types = FILTERS.find((f) => f.key === activeTab)?.types ?? [];
+            list = list.filter((a) => types.includes(a.type));
+        }
+
+        if (search.trim()) {
+            const q = search.toLowerCase();
+            list = list.filter(
+                (a) =>
+                    a.subject?.toLowerCase().includes(q) ||
+                    a.actor?.toLowerCase().includes(q)   ||
+                    a.meta?.toLowerCase().includes(q)    ||
+                    a.message?.some((p) => p.text?.toLowerCase().includes(q))
+            );
+        }
+
+        return list;
+    }, [activities, activeTab, search]);
+
+    // Group filtered list by time period
+    const grouped = useMemo(() => {
+        const g = {};
+        filtered.forEach((item) => {
+            const key = getGroup(item.timestamp);
+            if (!g[key]) g[key] = [];
+            g[key].push(item);
+        });
+        return g;
+    }, [filtered]);
+
+    const renderMessage = (message) =>
+        message.map((part, i) => (
             <span
                 key={i}
-                style={{ color: part.color || "inherit" }}
-                className={part.bold ? "font-[700]" : ""}
+                className={part.bold ? "font-[700] text-[#303972]" : "text-[#A098AE]"}
+                style={part.highlight ? { color: "#4D44B5", fontWeight: 600 } : {}}
             >
                 {part.text}
             </span>
         ));
 
-    const filterActivities = (activities) => {
-        if (!searchQuery.trim()) return activities;
-        return activities.filter((item) =>
-            item.content.some((part) =>
-                part.text.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-        );
-    };
-
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
-            {/* Top Nav */}
-            <div className="flex justify-between items-center mb-[30px]">
+
+            {/* ── Header ── */}
+            <div className="flex justify-between items-center mb-[20px]">
                 <h1 className="text-[36px] font-[700] p-[20px] text-[#4D44B5]">
-                    Notification &amp; Latest Activity
+                    Latest Activity
                 </h1>
-                <div className="flex items-center bg-[#fff] rounded-full px-4 py-[10px] w-[300px]">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[20px]" />
+                <div className="flex items-center bg-white rounded-full px-4 py-[10px] w-[300px] shadow-sm">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE]" />
                     <input
                         type="text"
-                        placeholder="Search here..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="outline-none ml-[10px] border-none w-full text-[#A098AE] placeholder-[#A098AE]"
+                        placeholder="Search activities..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="outline-none ml-[10px] border-none w-full text-[#303972] placeholder-[#A098AE] text-[14px]"
                     />
                 </div>
             </div>
 
-            {/* Activity Feed */}
+            {/* ── Filter tabs ── */}
+            <div className="flex gap-[8px] mb-[25px] px-[20px] flex-wrap">
+                {FILTERS.map((f) => (
+                    <button
+                        key={f.key}
+                        onClick={() => setActiveTab(f.key)}
+                        className={`px-[18px] py-[8px] rounded-full text-[14px] font-[600] transition-all cursor-pointer ${
+                            activeTab === f.key
+                                ? "bg-[#4D44B5] text-white shadow"
+                                : "bg-white text-[#A098AE] hover:bg-[#EEEDFA] hover:text-[#4D44B5]"
+                        }`}
+                    >
+                        {f.label}
+                    </button>
+                ))}
+            </div>
+
+            {/* ── Activity feed ── */}
             <div className="bg-white rounded-[20px] p-[40px] shadow-sm">
-                {Object.entries(activityData).map(([group, items]) => {
-                    const filtered = filterActivities(items);
-                    if (filtered.length === 0) return null;
-                    return (
-                        <div key={group} className="mb-[40px]">
-                            {/* Group Label */}
-                            <h2 className="text-[#303972] text-[22px] font-[700] mb-[25px]">
-                                {group}
-                            </h2>
-
-                            {/* Timeline */}
-                            <div className="relative">
-                                {/* Vertical line */}
-                                <div className="absolute left-[10px] top-0 bottom-0 w-[2px] bg-[#E8E9FD]"></div>
-
-                                <div className="flex flex-col gap-[28px]">
-                                    {filtered.map((item) => (
-                                        <div key={item.id} className="flex gap-[25px]">
-                                            {/* Dot */}
-                                            <div className="flex-shrink-0 w-[22px] h-[22px] mt-[2px] z-10">
-                                                <div className="w-[22px] h-[22px] rounded-full bg-[#4D44B5] border-[3px] border-white shadow-[0_0_0_2px_#4D44B5]"></div>
-                                            </div>
-
-                                            {/* Content */}
-                                            <div className="flex-1 pb-[4px]">
-                                                <p className="text-[#A098AE] text-[13px] mb-[6px]">
-                                                    {item.date}
-                                                </p>
-                                                <p className="text-[#303972] text-[15px] leading-relaxed">
-                                                    {renderContent(item.content)}
-                                                </p>
-
-                                                {/* File thumbnails */}
-                                                {item.images && (
-                                                    <div className="flex gap-[15px] mt-[15px] flex-wrap">
-                                                        {item.images.map((_, idx) => (
-                                                            <div
-                                                                key={idx}
-                                                                className="w-[175px] h-[110px] bg-[#C1BBEB] rounded-[12px] cursor-pointer hover:opacity-80 transition-opacity"
-                                                            ></div>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
-
-                {/* Empty state */}
-                {Object.values(activityData).every(
-                    (items) => filterActivities(items).length === 0
-                ) && (
+                {filtered.length === 0 ? (
                     <div className="text-center py-[60px]">
                         <p className="text-[#A098AE] text-[16px]">No activities found.</p>
                     </div>
+                ) : (
+                    GROUP_ORDER.filter((g) => grouped[g]).map((group) => (
+                        <div key={group} className="mb-[40px]">
+
+                            {/* Group label */}
+                            <div className="flex items-center gap-[10px] mb-[25px]">
+                                <h2 className="text-[#303972] text-[20px] font-[700]">
+                                    {group}
+                                </h2>
+                                <span className="text-[12px] font-[500] text-[#A098AE] bg-[#F3F4FF] px-[10px] py-[2px] rounded-full">
+                                    {grouped[group].length}{" "}
+                                    {grouped[group].length === 1 ? "event" : "events"}
+                                </span>
+                            </div>
+
+                            {/* Timeline */}
+                            <div className="relative">
+                                {/* Vertical connector line */}
+                                <div className="absolute left-[19px] top-0 bottom-0 w-[2px] bg-[#E8E9FD]" />
+
+                                <div className="flex flex-col gap-[24px]">
+                                    {grouped[group].map((item) => {
+                                        const cfg  = ACTIVITY_CONFIG[item.type] ?? { color: "#A098AE", bg: "#F3F4FF", label: item.type };
+                                        const icon = ACTIVITY_ICONS[item.type];
+
+                                        return (
+                                            <div key={item.id} className="flex gap-[20px] items-start">
+
+                                                {/* ── Icon badge (sits on the timeline line) ── */}
+                                                <div
+                                                    className="flex-shrink-0 w-[40px] h-[40px] rounded-full flex items-center justify-center z-10 shadow-sm"
+                                                    style={{ backgroundColor: cfg.bg }}
+                                                >
+                                                    {icon && (
+                                                        <FontAwesomeIcon
+                                                            icon={icon}
+                                                            style={{ color: cfg.color }}
+                                                            className="text-[15px]"
+                                                        />
+                                                    )}
+                                                </div>
+
+                                                {/* ── Content card ── */}
+                                                <div className="flex-1 bg-[#FAFBFF] rounded-[12px] p-[16px] border border-[#E8E9FD]">
+
+                                                    {/* Type badge + timestamp */}
+                                                    <div className="flex items-center justify-between mb-[8px]">
+                                                        <span
+                                                            className="text-[11px] font-[700] px-[10px] py-[3px] rounded-full uppercase tracking-wide"
+                                                            style={{ color: cfg.color, backgroundColor: cfg.bg }}
+                                                        >
+                                                            {cfg.label}
+                                                        </span>
+                                                        <span className="text-[12px] text-[#A098AE]">
+                                                            {group === "Today"
+                                                                ? formatTime(item.timestamp)
+                                                                : formatDate(item.timestamp)}
+                                                        </span>
+                                                    </div>
+
+                                                    {/* Message */}
+                                                    <p className="text-[14px] leading-relaxed">
+                                                        {renderMessage(item.message)}
+                                                    </p>
+
+                                                    {/* Meta pill */}
+                                                    {item.meta && (
+                                                        <span className="mt-[8px] inline-block text-[12px] text-[#A098AE] bg-[#F3F4FF] px-[10px] py-[3px] rounded-full">
+                                                            {item.meta}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        </div>
+                    ))
                 )}
             </div>
         </div>
     );
 };
+
 export default LatestActivityComp;
+

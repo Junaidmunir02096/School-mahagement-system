@@ -21,7 +21,7 @@ const ChatSidebar = ({ allChats, onSelectChat, selectedChatId }) => {
       </div>
 
       {/* Messages List */}
-      <div className={`flex flex-col  ${showAllMessages ? 'h-[70%] overflow-y-auto pr-[10px]' : ''}`}>
+      <div className={`flex flex-col  ${showAllMessages ? 'h-[50%] overflow-y-auto pr-[10px]' : ''}`}>
         {displayedMessages.map((msg) => (
           <div
             key={msg.id}
