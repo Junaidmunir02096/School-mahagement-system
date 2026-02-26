@@ -74,7 +74,15 @@ import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 export default function BasicDateCalendar() {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DateCalendar />
+      <DateCalendar
+        sx={{
+          width: '100%',
+          maxHeight: '100%',
+          '& .MuiDayCalendar-header, & .MuiDayCalendar-weekContainer': {
+            justifyContent: 'space-around',
+          },
+        }}
+      />
     </LocalizationProvider>
   );
 }

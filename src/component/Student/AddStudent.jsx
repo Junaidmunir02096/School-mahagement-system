@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addStudent } from "../../store/slices/studentsSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const AddStudent = () => {
     const dispatch  = useDispatch();
@@ -58,7 +60,12 @@ const AddStudent = () => {
 
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] px-[15px]">
-            <h1 className="text-[36px] font-[700] p-[20px] text-[#4D44B5]">Add New Student</h1>
+            <div className="flex items-center">
+                <div className="h-[2.5rem] w-[2.5rem] hover:bg-[#dcd8da85] rounded-full flex items-center justify-center">
+                    <FontAwesomeIcon icon={faArrowLeft} className="text-[#4D44B5] text-[20px] cursor-pointer" onClick={() => navigate(-1)} />
+                </div>
+                <h1 className="text-[36px] font-[700] text-center p-[20px] text-[#4D44B5]">Add New Student</h1>
+            </div>
 
             {submitted && (
                 <div className="mx-[20px] mb-[10px] bg-[#E8F8F0] border border-[#4CAF79] text-[#4CAF79] px-[20px] py-[12px] rounded-[12px] font-[600]">
@@ -334,8 +341,8 @@ const AddStudent = () => {
             </div>
 
             <div className="w-[100%] flex justify-end gap-[20px] bg-[#F5F5F5] py-[20px] px-[20px] rounded-b-[20px]" >
-                <button type="button" className="px-[30px] py-[12px] border-[#4D44B5] rounded-full  text-[#4D44B5] text-[16px] font-[400] ">Save as Draft</button>
-                <button type="button" onClick={handleSubmit} className="px-[30px] py-[12px] rounded-full bg-[#5B5BE0] text-[#fff] text-[16px] font-[400]">Submit</button>
+                <button type="button" className="px-[30px] py-[10px] border-[#4D44B5] border-2 rounded-full  text-[#4D44B5] text-[16px] font-[400] ">Save as Draft</button>
+                <button type="button" onClick={handleSubmit} className="px-[30px] py-[10px] rounded-full bg-[#5B5BE0] text-[#fff] text-[16px] font-[400]">Submit</button>
             </div>
         </div>
     )

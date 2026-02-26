@@ -308,7 +308,7 @@ const MarkAttendance = () => {
                                 <span className="text-[#A098AE] text-[13px] font-[500] w-[24px] text-center">
                                     {idx + 1}
                                 </span>
-                                <div className={`w-[42px] h-[42px] rounded-full ${student.avatarColor} flex items-center justify-center text-[#4D44B5] font-[700] text-[14px]`}>
+                                <div className={`w-[42px] h-[42px] rounded-full ${student.avatarColor} flex items-center justify-center text-[#fff] font-[700] text-[14px]`}>
                                     {student.avatar}
                                 </div>
                                 <div>
