@@ -17,7 +17,7 @@ export default function SchoolPerformanceChart({ title }) {
   // monthlyTrend shape: [{ month, present, absent, late }]
   const data = useSelector(selectMonthlyTrend);
   return (
-    <div className="bg-white rounded-xl p-5 shadow-md">
+    <div className="bg-white rounded-xl sm:p-5 p-0  shadow-md">
             <h2 className="text-xl font-bold p-[20px]">{title}</h2>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={data}>
