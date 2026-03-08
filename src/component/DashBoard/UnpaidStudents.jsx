@@ -27,7 +27,8 @@ export default function UnpaidStudents() {
             </h2>
 
             {/* List */}
-            <div className="flex flex-col gap-[1vh]">
+            <div className="w-full overflow-x-auto">
+              <div className="min-w-[600px] flex flex-col gap-[1vh]">
                 {currentData.map((student, index) => (
                     <div
                         key={student.id}
@@ -78,6 +79,7 @@ export default function UnpaidStudents() {
                         </div>
                     </div>
                 ))}
+              </div>
             </div>
 
                 {/* Pagination */}
