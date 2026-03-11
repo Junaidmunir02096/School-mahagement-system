@@ -83,11 +83,11 @@ const AddTeacher = () => {
                 <div className="bg-[#4D44B5] text-[#fff] px-[30px] py-[11px] rounded-t-[20px] mb-[30px]">
                     <h2 className="text-[24px] font-[700]">Personal Details</h2>
                 </div>
-                <div className="flex gap-[30px] px-[2rem] bg-[#fff]">
+                <div className="flex gap-[30px] px-[2rem] pb-[30px] bg-[#fff]">
                     {/* Form Fields */}
                     <div className="w-[100%]">
                         {/* First Name and Last Name Row */}
-                        <div className="grid grid-cols-2 gap-[20px] mb-[20px]">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-[20px]">
                             <div>
                                 <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
                                     First Name <span className="text-red-500">*</span>
@@ -118,7 +118,7 @@ const AddTeacher = () => {
 
                         {/* Date & Place of Birth Row */}
                         <div className="mb-[20px]">
-                            <div className="grid grid-cols-2 gap-[20px]">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
                                 <div>
                                     <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
                                         Email <span className="text-red-500">*</span>
@@ -148,23 +148,21 @@ const AddTeacher = () => {
                             </div>
                         </div>
 
-                        {/* Address Field */}
-                        <div className="flex justify-between mb-[20px]">
-                            <div>
+                        {/* Address + Photo Field */}
+                        <div className="flex flex-col md:flex-row gap-[20px] mb-[20px]">
+                            <div className="flex-1">
                                 <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
                                     Address <span className="text-red-500">*</span>
                                 </label>
-                                <div>
-                                    <textarea
-                                        name="address"
-                                        value={formData.address}
-                                        onChange={handleInputChange}
-                                        placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                        rows="6"
-                                        maxLength="1000"
-                                        className="w-[40rem] px-[20px] py-[12px] border border-[#E0E0E0] rounded-[8px] outline-none focus:border-[#4D44B5] transition-colors text-[14px] text-[#303972] placeholder-[#A098AE] resize-none"
-                                    />
-                                </div>
+                                <textarea
+                                    name="address"
+                                    value={formData.address}
+                                    onChange={handleInputChange}
+                                    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    rows="6"
+                                    maxLength="1000"
+                                    className="w-full px-[20px] py-[12px] border border-[#E0E0E0] rounded-[8px] outline-none focus:border-[#4D44B5] transition-colors text-[14px] text-[#303972] placeholder-[#A098AE] resize-none"
+                                />
                             </div>
                             <div className="flex-shrink-0">
                                 <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
@@ -188,10 +186,8 @@ const AddTeacher = () => {
                                     )}
                                 </div>
                             </div>
-                            <div>
-                            </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-[20px] mb-[20px]">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-[20px]">
                             <div>
                                 <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
                                     Date of Birth<span className="text-red-500">*</span>
@@ -223,15 +219,14 @@ const AddTeacher = () => {
                 </div>
             </div>
 
-
             <div className="bg-[#fff] rounded-[20px]">
                 <div className="bg-[#4D44B5] text-[#fff] px-[30px] py-[11px] rounded-t-[20px] mb-[30px]">
                     <h2 className="text-[24px] font-[700]">Education</h2>
                 </div>
-                <div className="flex gap-[30px] px-[2rem] bg-[#fff]">
+                <div className="flex gap-[30px] px-[2rem] pb-[30px] bg-[#fff]">
                     {/* Form Fields */}
                     <div className="w-[100%]">
-                        <div className="grid grid-cols-2 gap-[20px] mb-[20px]">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px] mb-[20px]">
                             <div>
                                 <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
                                     University<span className="text-red-500">*</span>
@@ -262,12 +257,12 @@ const AddTeacher = () => {
 
                         {/* Date & Place of Birth Row */}
                         <div className="mb-[20px]">
-                            <div className="grid grid-cols-2 gap-[20px]">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-[20px]">
                                 <div>
                                     <label className="block text-[#303972] text-[14px] font-[600] mb-[10px]">
                                         Start & End Date <span className="text-red-500">*</span>
                                     </label>
-                                    <div className="flex gap-[10px]">
+                                    <div className="flex flex-col sm:flex-row gap-[10px]">
                                         <input
                                             type="text"
                                             name="startDate"

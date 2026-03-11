@@ -37,7 +37,7 @@ const TeacherComp = () => {
 
             {/* Teacher Cards Grid */}
             <div className="bg-white rounded-[20px] mt-[20px] p-[30px]">
-                <div className="grid grid-cols-4 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[20px]">
                     {currentTeachers.map((teacher) => (
                         <div 
                             key={teacher.id} 
