@@ -199,7 +199,7 @@ const MarkAttendance = () => {
 
             {/* ── Filters Card ───────────────────────────────────────────────── */}
             <div className="bg-white rounded-[20px] p-[24px] mb-[20px]">
-                <div className="flex gap-[20px] items-end">
+                <div className="flex flex-col md:flex-row gap-[20px] md:items-end">
                     {/* Class */}
                     <SelectDropdown
                         label="Class"
@@ -236,7 +236,7 @@ const MarkAttendance = () => {
             </div>
 
             {/* ── Live Summary + Bulk Actions ────────────────────────────────── */}
-            <div className="bg-white rounded-[20px] p-[20px] mb-[20px] flex justify-between items-center">
+            <div className="bg-white rounded-[20px] p-[20px] mb-[20px] flex flex-wrap justify-between items-center gap-[16px]">
                 {/* Live count pills */}
                 <div className="flex gap-[10px] flex-wrap">
                     {Object.entries(counts).map(([key, val]) => {
@@ -274,7 +274,7 @@ const MarkAttendance = () => {
 
             {/* ── Students List ──────────────────────────────────────────────── */}
             <div className="bg-white rounded-[20px] p-[20px]">
-                <div className="flex justify-between items-center mb-[16px]">
+                <div className="flex flex-wrap justify-between items-center gap-[12px] mb-[16px]">
                     <h2 className="text-[#303972] text-[16px] font-[700]">
                         Students — <span className="text-[#4D44B5]">{selectedClass}</span>
                         <span className="text-[#A098AE] text-[13px] font-[400] ml-[8px]">
@@ -297,11 +297,12 @@ const MarkAttendance = () => {
                 <div className="border-b border-[#E5E5E5] mb-[4px]"></div>
 
                 {/* Student rows */}
-                <div className="flex flex-col gap-[2px]">
+                <div className="overflow-x-auto">
+                <div className="flex flex-col gap-[2px] min-w-[500px]">
                     {records.map((student, idx) => (
                         <div
                             key={student.id}
-                            className="flex items-center justify-between py-[14px] px-[8px] border-b border-[#F3F4FF] hover:bg-[#F9F9FF] rounded-[12px] transition"
+                            className="flex flex-wrap items-center justify-between gap-[10px] py-[14px] px-[8px] border-b border-[#F3F4FF] hover:bg-[#F9F9FF] rounded-[12px] transition"
                         >
                             {/* Left: number + avatar + name */}
                             <div className="flex items-center gap-[14px]">
@@ -343,6 +344,7 @@ const MarkAttendance = () => {
                             </div>
                         </div>
                     ))}
+                </div>
                 </div>
 
                 {/* ── Footer Actions ────────────────────────────────────────── */}

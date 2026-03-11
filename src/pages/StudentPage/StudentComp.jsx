@@ -56,7 +56,8 @@ const StudentComp = () => {
             <SearchHeader title={'Add Student'} />
 
             <div className="bg-white rounded-[20px] mt-[20px] p-[20px]">
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                <table className="w-full min-w-[945px]">
                     <thead>
                         <tr className="border-b border-[#E5E5E5]">
                             <th className="text-left py-[20px] px-[15px] w-[50px]">
@@ -130,6 +131,7 @@ const StudentComp = () => {
                         ))}
                     </tbody>
                 </table>
+                </div>
 
                 {/* Pagination */}
                 <Pagination

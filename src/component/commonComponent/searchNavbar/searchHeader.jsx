@@ -22,13 +22,13 @@ const SearchHeader = ({ title }) => {
     };
 
     return (
-        <>
-            <div className="flex justify-between items-center">
-                <div className="flex items-center   bg-[#fff] rounded-full px-4 py-[10px] w-[300px]">
+        <div>
+            <div className="flex flex-wrap justify-between items-center gap-[15px]">
+                <div className="flex items-center bg-[#fff] rounded-full px-4 py-[10px] w-full md:w-[300px]">
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[20px]" />
                     <input type="text" placeholder="Search here..." className="outline-none ml-[10px] border-none ml-2 w-full text-[#A098AE] placeholder-[#A098AE]" />
                 </div>
-                <div className="flex gap-[20px] items-center">
+                <div className="flex gap-[20px] items-center w-full md:w-auto justify-between md:justify-end">
                     <div className="relative">
                         <button
                             onClick={() => setOpen(!open)}
@@ -85,7 +85,7 @@ const SearchHeader = ({ title }) => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     )
 }
 export default SearchHeader;

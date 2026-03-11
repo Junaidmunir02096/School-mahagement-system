@@ -111,7 +111,7 @@ const AttendancePage = () => {
             </div>
 
             {/* ── Stats Cards ────────────────────────────────────────────────── */}
-            <div className="grid grid-cols-4 gap-[20px] mt-[10px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[20px] mt-[10px]">
                 {statsCards.map((card) => (
                     <div
                         key={card.label}
@@ -131,7 +131,7 @@ const AttendancePage = () => {
             {/* ── Today's Class Attendance Table ─────────────────────────────── */}
             <div className="bg-white rounded-[20px] mt-[20px] p-[20px]">
                 {/* Table header row */}
-                <div className="flex justify-between items-center mb-[20px]">
+                <div className="flex flex-wrap justify-between items-center gap-[12px] mb-[20px]">
                     <div className="flex items-center gap-[10px]">
                         <FontAwesomeIcon icon={faClipboardList} className="text-[#4D44B5] text-[18px]" />
                         <h2 className="text-[#303972] text-[18px] font-[700]">
@@ -142,7 +142,7 @@ const AttendancePage = () => {
                         </h2>
                     </div>
 
-                    <div className="flex gap-[12px] items-center">
+                    <div className="flex gap-[12px] items-center flex-wrap">
                         {/* Filter dropdown */}
                         <div className="relative">
                             <button
@@ -188,7 +188,8 @@ const AttendancePage = () => {
                 </div>
 
                 {/* Table */}
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                <table className="w-full min-w-[1000px]">
                     <thead>
                         <tr className="border-b border-[#E5E5E5]">
                             {["Class", "Class Teacher", "Subject", "Total", "Present", "Absent", "Late", "Rate", "Status", "Action"].map((h) => (
@@ -267,6 +268,7 @@ const AttendancePage = () => {
                         })}
                     </tbody>
                 </table>
+                </div>
 
                 {/* Table footer summary */}
                 <div className="mt-[16px] pt-[16px] border-t border-[#E5E5E5] flex justify-between items-center">
