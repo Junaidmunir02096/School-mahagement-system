@@ -42,7 +42,7 @@ const FoodComp = () => {
 
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-wrap justify-between items-center">
                 <h1 className="text-[36px] font-[700] text-center p-[20px] text-[#4D44B5]">Food</h1>
                 <div className="flex items-center bg-[#fff] rounded-full px-4 py-[10px] w-[300px]">
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[20px]" />
@@ -52,7 +52,8 @@ const FoodComp = () => {
 
             {/* Food Menu Section */}
             <div className="bg-white rounded-[20px] p-[30px] mt-[20px]">
-                <div className="flex justify-between items-center mb-[30px]">
+                <div className="overflow-x-auto no-scrollbar">
+                <div className="flex justify-between items-center mb-[30px] min-w-[560px]">
                     <h2 className="text-[#303972] text-[24px] font-[700]">Food Menu</h2>
                     {/* Filter Tabs */}
                     <div className="filter-tabs">
@@ -70,11 +71,13 @@ const FoodComp = () => {
                         ))}
                     </div>
                 </div>
+            </div>
 
                 {/* Food Items List */}
-                <div className="flex flex-col gap-[25px]">
-                    {currentFoodItems.map((food) => (
-                        <div key={food.id} className="flex items-center justify-between">
+                <div className="overflow-x-auto no-scrollbar">
+                    <div className="flex flex-col gap-[25px] min-w-[800px]">
+                        {currentFoodItems.map((food) => (
+                            <div key={food.id} className="flex items-center justify-between">
                             {/* Left Section - Image, Badge, Name */}
                             <div className="flex items-center gap-[20px] flex-1">
                                 {/* Image Placeholder */}
@@ -129,8 +132,9 @@ const FoodComp = () => {
                                     <FontAwesomeIcon icon={faEllipsis} className="text-[20px]" />
                                 </button>
                             </div>
-                        </div>
-                    ))}
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Pagination */}
