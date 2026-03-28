@@ -8,7 +8,7 @@ const ChatSidebar = ({ allChats, onSelectChat, selectedChatId }) => {
   const displayedMessages = showAllMessages ? allChats : allChats.slice(0, 7);
 
   return (
-    <div className="bg-white rounded-tl-[20px] rounded-bl-[20px] p-[1.125rem] w-[24rem] shadow-sm">
+    <div className="bg-white rounded-[16px] lg:rounded-tl-[20px] lg:rounded-bl-[20px] lg:rounded-tr-none lg:rounded-br-none p-[1.125rem] w-full lg:w-[24rem] shadow-sm flex flex-col max-h-[calc(100vh-9rem)]">
       {/* Header */}
       <div className="mb-3">
         <h2 className="text-[#303972] text-[24px] font-bold">Messages</h2>
@@ -21,7 +21,7 @@ const ChatSidebar = ({ allChats, onSelectChat, selectedChatId }) => {
       </div>
 
       {/* Messages List */}
-      <div className={`flex flex-col  ${showAllMessages ? 'h-[50%] overflow-y-auto pr-[10px]' : ''}`}>
+      <div className={`flex flex-col flex-1 overflow-y-auto pr-[10px] ${showAllMessages ? '' : 'max-h-[22rem]'}`}>
         {displayedMessages.map((msg) => (
           <div
             key={msg.id}
@@ -48,7 +48,7 @@ const ChatSidebar = ({ allChats, onSelectChat, selectedChatId }) => {
 
       <button
         onClick={() => setShowAllMessages(!showAllMessages)}
-        className="w-full bg-[#ced0e8] text-[#4D44B5] text-[15px] border-none font-[600] py-[17px] rounded-full mt-[25px] hover:bg-[#e8e9fd] transition-colors"
+        className="w-full bg-[#ced0e8] text-[#4D44B5] text-[15px] border-none font-[600] py-[17px] rounded-full mt-[15px] hover:bg-[#e8e9fd] transition-colors flex-shrink-0"
       >
         {showAllMessages ? 'Show Less' : 'View More'}
       </button>
