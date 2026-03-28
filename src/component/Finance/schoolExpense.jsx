@@ -37,10 +37,10 @@ const SchoolExpense = () => {
                 return 'text-[#A098AE]';
         }
     };
-    return(
-         <div className="flex gap-[2rem] mt-[20px]">
+        return(
+            <div className="flex gap-[2rem] mt-[20px] w-[700px] md:w-full">
                 {/* School Expense Component */}
-                <div className="bg-[#fff] rounded-[20px] p-[30px] flex-1 shadow-sm">
+                 <div className="bg-[#fff] rounded-[20px] p-[30px] w-full shadow-sm">
                     <h2 className="text-[#303972] text-[24px] font-[700] mb-[30px]">School Expense</h2>
                     
                     {/* Expense List */}
