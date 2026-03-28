@@ -33,7 +33,7 @@ const UserComp = () => {
 
     return (
         <div className="w-full h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[20px]">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-wrap justify-between items-center">
                 <h1 className="text-[36px] font-[700] text-center p-[20px] text-[#4D44B5]">User Dashboard</h1>
                 <div className="flex items-center bg-[#fff] rounded-full px-4 py-[10px] w-[300px]">
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[20px]" />
@@ -60,7 +60,7 @@ const UserComp = () => {
                     <div className="pt-[60px]">
                         <h2 className="text-[#303972] text-[28px] font-[700] mb-[5px]">Nabila Azalea</h2>
                         <p className="text-[#4D44B5] text-[16px] font-[600] mb-[8px]">Admin</p>
-                        <div className="flex justify-between items-center gap-[8px] text-[#A098AE] text-[14px] ">
+                        <div className="flex flex-wrap justify-between items-center gap-[8px] text-[#A098AE] text-[14px] ">
                             <div>
                                 <FontAwesomeIcon icon={faLocationDot} className="text-[14px]" />
                                 <span>Jakarta, Indonesia</span>
@@ -90,7 +90,7 @@ const UserComp = () => {
             </div>
 
             {/* Contacts and Messages Section */}
-            <div className="flex gap-[20px] mt-[20px]">
+            <div className="flex flex-col lg:flex-row gap-[20px] mt-[20px]">
                 {/* Contacts Section */}
                 <div className="bg-[#fff] rounded-[20px] p-[30px] flex-1 shadow-sm">
                     {/* Header */}

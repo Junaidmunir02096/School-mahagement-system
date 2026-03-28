@@ -15,7 +15,7 @@ const ChatWindow = ({ chat, onSendMessage }) => {
     // Empty state — no chat selected
     if (!chat) {
         return (
-            <div className="flex-1 bg-[#fff] flex items-center border-l-1 border-[#dbdbe7] justify-center bg-[#F3F4FF] rounded-tr-[20px] rounded-br-[20px]">
+            <div className="flex-1 bg-[#fff] flex items-center border-t border-[#dbdbe7] lg:border-t-0 lg:border-l justify-center bg-[#F3F4FF] rounded-[16px] lg:rounded-tl-none lg:rounded-bl-none lg:rounded-tr-[20px] lg:rounded-br-[20px]">
                 <div className="text-center">
                     <div className="text-[60px] mb-4">💬</div>
                     <h3 className="text-[#303972] text-[20px] font-[600]">Select a conversation</h3>
@@ -36,7 +36,7 @@ const ChatWindow = ({ chat, onSendMessage }) => {
     };
 
     return (
-        <div className="flex-1 bg-[#fff] rounded-tr-[20px] rounded-br-[20px] border-l-1 border-[#dbdbe7] flex flex-col overflow-hidden shadow-sm">
+        <div className="flex-1 w-full bg-[#fff] rounded-[16px] lg:rounded-tr-[20px] lg:rounded-br-[20px] lg:rounded-tl-none lg:rounded-bl-none border-t border-[#dbdbe7] lg:border-t-0 lg:border-l flex flex-col overflow-hidden shadow-sm h-[70vh] lg:h-auto max-h-[80vh]">
 
             {/* ---- HEADER ---- */}
             <div className="flex items-center justify-between px-[25px] py-[20px] border-b border-[#dbdbe7]">
