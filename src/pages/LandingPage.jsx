@@ -142,6 +142,18 @@ export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [count, setCount] = useState({ s: 0, sc: 0, sat: 0 });
   const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    localStorage.setItem("routeAccessMode", "full");
+    navigate("/login");
+  };
+
+  const handleFreeAccessClick = () => {
+    localStorage.setItem("routeAccessMode", "limited");
+    setMobileOpen(false);
+    navigate("/user");
+  };
+
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handler);
@@ -206,8 +218,8 @@ export default function App() {
             ))}
           </div>
           <div className="hidden md:flex items-center gap-3">
-            <button  onClick={() => navigate("/login")} className="text-sm font-medium text-[#4D44B5] hover:opacity-80 transition-opacity px-4 py-2">Log In</button>
-            <button className="text-sm font-semibold text-white px-5 py-2.5 rounded-xl transition-all hover:shadow-lg hover:scale-105" style={{ background: "linear-gradient(135deg, #4D44B5, #7C74D8)" }}>Get Started Free</button>
+            <button onClick={handleLoginClick} className="text-sm font-medium text-[#4D44B5] hover:opacity-80 transition-opacity px-4 py-2">Log In</button>
+            <button onClick={handleFreeAccessClick} className="text-sm font-semibold text-white px-5 py-2.5 rounded-xl transition-all hover:shadow-lg hover:scale-105" style={{ background: "linear-gradient(135deg, #4D44B5, #7C74D8)" }}>Get Started Free</button>
           </div>
           <button className="md:hidden text-gray-700" onClick={() => setMobileOpen(!mobileOpen)}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={mobileOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} /></svg>
@@ -216,7 +228,7 @@ export default function App() {
         {mobileOpen && (
           <div className="md:hidden bg-white border-t px-6 py-4 flex flex-col gap-4">
             {navLinks.map(link => <a key={link} href={`#${link.toLowerCase()}`} className="text-gray-700 font-medium">{link}</a>)}
-            <button className="text-white py-2.5 rounded-xl font-semibold" style={{ background: "#4D44B5" }}>Get Started Free</button>
+            <button onClick={handleFreeAccessClick} className="text-white py-2.5 rounded-xl font-semibold" style={{ background: "#4D44B5" }}>Get Started Free</button>
           </div>
         )}
       </nav>
@@ -250,7 +262,7 @@ export default function App() {
               EduCore brings together every aspect of school administration — from admissions to alumni — into one powerful, easy-to-use platform built for modern education.
             </p>
             <div className="flex flex-wrap gap-4 mb-10">
-              <button className="relative overflow-hidden text-white font-semibold px-7 py-3.5 rounded-2xl text-base transition-all hover:shadow-xl hover:scale-105 shine" style={{ background: "linear-gradient(135deg, #4D44B5, #7C74D8)" }}>
+              <button onClick={handleFreeAccessClick} className="relative overflow-hidden text-white font-semibold px-7 py-3.5 rounded-2xl text-base transition-all hover:shadow-xl hover:scale-105 shine" style={{ background: "linear-gradient(135deg, #4D44B5, #7C74D8)" }}>
                 Start Free Trial
               </button>
               <button className="flex items-center gap-2 font-semibold px-7 py-3.5 rounded-2xl text-base border-2 transition-all hover:border-[#4D44B5] hover:text-[#4D44B5]" style={{ borderColor: "#c5c0f0", color: "#4D44B5" }}>

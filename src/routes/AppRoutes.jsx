@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../component/DashboardLayout/DashboardLayout";
 import LandingPage from "../pages/LandingPage";
 
@@ -19,6 +19,21 @@ import MarkAttendance from "../pages/AttendancePage/MarkAttendance";
 import AttendanceReport from "../pages/AttendancePage/AttendanceReport";
 import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
+import NotFound from "../pages/NotFound";
+
+const getRouteAccessMode = () => {
+  return localStorage.getItem("routeAccessMode") === "limited" ? "limited" : "full";
+};
+
+const RouteAccess = ({ children, allowLimited = false }) => {
+  const accessMode = getRouteAccessMode();
+
+  if (accessMode === "limited" && !allowLimited) {
+    return <Navigate to="/user" replace />;
+  }
+
+  return children;
+};
 
 const AppRoutes = () => {
   return (
@@ -30,22 +45,24 @@ const AppRoutes = () => {
 
       {/* 🔹 Dashboard Layout Routes */}
       <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<DashBoard />} />
-        <Route path="/students" element={<StudentComp />} />
-        <Route path="/students/add-student" element={<AddStudent />} />
-        <Route path="/teachers" element={<TeacherComp />} />
-        <Route path="/teachers/add-teacher" element={<AddTeacher />} />
-        <Route path="/attendance" element={<AttendancePage />} />
-        <Route path="/attendance/mark" element={<MarkAttendance />} />
-        <Route path="/attendance/report" element={<AttendanceReport />} />
-        <Route path="/event" element={<EventComp />} />
-        <Route path="/finance" element={<FinanceComp />} />
-        <Route path="/food" element={<FoodComp />} />
-        <Route path="/food-details/:id" element={<FoodDetails />} />
-        <Route path="/user" element={<UserComp />} />
-        <Route path="/chat" element={<ChatComp />} />
-        <Route path="/latest-activity" element={<LatestActivityComp />} />
+        <Route path="/dashboard" element={<RouteAccess><DashBoard /></RouteAccess>} />
+        <Route path="/students" element={<RouteAccess><StudentComp /></RouteAccess>} />
+        <Route path="/students/add-student" element={<RouteAccess><AddStudent /></RouteAccess>} />
+        <Route path="/teachers" element={<RouteAccess><TeacherComp /></RouteAccess>} />
+        <Route path="/teachers/add-teacher" element={<RouteAccess><AddTeacher /></RouteAccess>} />
+        <Route path="/attendance" element={<RouteAccess><AttendancePage /></RouteAccess>} />
+        <Route path="/attendance/mark" element={<RouteAccess><MarkAttendance /></RouteAccess>} />
+        <Route path="/attendance/report" element={<RouteAccess><AttendanceReport /></RouteAccess>} />
+        <Route path="/event" element={<RouteAccess><EventComp /></RouteAccess>} />
+        <Route path="/finance" element={<RouteAccess><FinanceComp /></RouteAccess>} />
+        <Route path="/food" element={<RouteAccess allowLimited><FoodComp /></RouteAccess>} />
+        <Route path="/food-details/:id" element={<RouteAccess allowLimited><FoodDetails /></RouteAccess>} />
+        <Route path="/user" element={<RouteAccess allowLimited><UserComp /></RouteAccess>} />
+        <Route path="/chat" element={<RouteAccess allowLimited><ChatComp /></RouteAccess>} />
+        <Route path="/latest-activity" element={<RouteAccess allowLimited><LatestActivityComp /></RouteAccess>} />
       </Route>
+
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

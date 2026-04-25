@@ -57,7 +57,7 @@ const ChatPage = () => {
     return (
         <div className="w-full min-h-[100vh] overflow-y-scroll bg-[#F3F4FF] p-[10px]">   
             <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center">
-                <h1 className="text-[28px] md:text-[36px] font-[700] text-center md:text-left p-[20px] text-[#4D44B5]">User Dashboard</h1>
+                <h1 className="text-[28px] md:text-[36px] font-[700] text-center md:text-left p-[20px] text-[#4D44B5]">Chat</h1>
                 <div className="flex items-center bg-[#fff] rounded-full px-4 py-[10px] w-full md:w-[300px]">
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[#A098AE] ml-[10px] md:ml-[20px]" />
                     <input type="text" placeholder="Search here..." className="outline-none ml-[10px] border-none w-full text-[#A098AE] placeholder-[#A098AE]" />
