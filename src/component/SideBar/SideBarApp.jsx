@@ -16,6 +16,7 @@ const SideBarApp = ({ onClose }) => {
     const [active, setActive] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    const routeAccessMode = localStorage.getItem("routeAccessMode") === "limited" ? "limited" : "full";
 
     const menuItems = [
         { label: 'Dashbord', path: '/dashboard', icon: <img src={HomeIcon} alt="Home" className="w-[20px] h-[20px]" /> },
@@ -30,13 +31,18 @@ const SideBarApp = ({ onClose }) => {
         { label: 'Latest Activity', path: '/latest-activity', icon: <img src={LatestActivityIcon} alt="Classes" className="w-[20px] h-[20px]" /> },
     ]
 
+    const limitedAccessRoutes = ["/food", "/user", "/chat", "/latest-activity"];
+    const visibleMenuItems = routeAccessMode === "limited"
+        ? menuItems.filter((item) => limitedAccessRoutes.includes(item.path))
+        : menuItems;
+
     // Set active state based on current path
     useEffect(() => {
-        const currentItem = menuItems.find(item => item.path === location.pathname);
+        const currentItem = visibleMenuItems.find(item => item.path === location.pathname);
         if (currentItem) {
             setActive(currentItem.label);
         }
-    }, [location.pathname]);
+    }, [location.pathname, routeAccessMode]);
 
     return (
     <div className="bg-[#4D44B5] h-screen w-[310px] flex flex-col overflow-y-auto">
@@ -53,7 +59,7 @@ const SideBarApp = ({ onClose }) => {
             </button>
           </div>
             <div className="flex flex-col w-full mt-2 mb-[40px] flex-1 overflow-y-auto">
-                {menuItems.map((item) => {
+                {visibleMenuItems.map((item) => {
                     const isActive = active === item.label;
                     return (
                         <div
@@ -67,7 +73,7 @@ const SideBarApp = ({ onClose }) => {
                             {/* Inner container: 80% width + white background */}
                             <div
                                 className={`w-[80%] cursor-pointer rounded-tl-[25px] rounded-bl-[25px] flex items-center p-[10px] mt-[10px] transition-colors duration-300
-                                ${isActive ? 'bg-[#fff] text-[#4D44B5]' : 'text-[#C1BBEB] text-[#4D44B5]'}`}
+                                ${isActive ? 'bg-[#fff] text-[#4D44B5]' : 'text-[#C1BBEB]'}`}
                             >
                                 <span className="mr-4 ">{item.icon}</span>
                                 <span className="text-[15px] font-Poppins ml-[10px]">{item.label}</span>

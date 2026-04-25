@@ -19,6 +19,7 @@ const Login = () => {
     e.preventDefault();
     const result = await dispatch(loginUser({ email, password }));
     if (loginUser.fulfilled.match(result)) {
+      localStorage.setItem("routeAccessMode", "full");
       navigate("/dashboard");
     }
   };
@@ -26,6 +27,7 @@ const Login = () => {
   const handleGoogle = async () => {
     const result = await dispatch(loginWithGoogle());
     if (loginWithGoogle.fulfilled.match(result)) {
+      localStorage.setItem("routeAccessMode", "full");
       navigate("/dashboard");
     }
   };
@@ -89,9 +91,9 @@ const Login = () => {
 
         {/* Divider */}
         <div className="flex items-center my-4">
-          <div className="flex-grow h-px bg-gray-300"></div>
+          <div className="grow h-px bg-gray-300"></div>
           <span className="px-3 text-gray-400 text-sm">OR</span>
-          <div className="flex-grow h-px bg-gray-300"></div>
+          <div className="grow h-px bg-gray-300"></div>
         </div>
 
         {/* Google Login */}

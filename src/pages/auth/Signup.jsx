@@ -30,7 +30,7 @@ const Signup = () => {
 
     const result = await dispatch(signupUser({ email, password, name }));
     if (signupUser.fulfilled.match(result)) {
-      navigate("/dashboard");
+      navigate("/login");
     }
   };
 
@@ -121,9 +121,9 @@ const Signup = () => {
 
         {/* Divider */}
         <div className="flex items-center my-4">
-          <div className="flex-grow h-px bg-gray-300"></div>
+          <div className="grow h-px bg-gray-300"></div>
           <span className="px-3 text-gray-400 text-sm">OR</span>
-          <div className="flex-grow h-px bg-gray-300"></div>
+          <div className="grow h-px bg-gray-300"></div>
         </div>
 
         {/* Google Signup */}
