@@ -114,66 +114,87 @@ MUI 7              →  date picker & UI components
 Framer Motion 12   →  page animations
 ```
 
-### Folder Organization
+### Folder Organization (Feature-First)
 
 ```
 src/
-├── App.jsx                   # Root component — renders AppRoutes
-├── main.jsx                  # React DOM entry point, Redux Provider
+├── app/
+│   ├── App.jsx               # App shell
+│   ├── routes/               # Route definitions
+│   └── store/                # Store setup
+│
+├── assets/                   # Static assets (icons, images)
+│   └── SideBarIcone/
+│
+├── features/                 # Feature modules (UI + store + mock + styles)
+│   ├── attendance/
+│   ├── auth/
+│   ├── chat/
+│   ├── dashboard/
+│   ├── events/
+│   ├── finance/
+│   ├── food/
+│   ├── landing/
+│   ├── notfound/
+│   ├── students/
+│   ├── teachers/
+│   └── user/
+│
+├── layouts/                  # App layouts (sidebar + shell)
+├── services/                 # External services (Firebase)
+├── shared/                   # Shared UI components
 ├── index.css                 # Global styles
-│
-├── routes/
-│   └── AppRoutes.jsx         # Centralized route definitions (public + protected)
-│
-├── pages/                    # Route-level page components
-│   ├── LandingPage.jsx       # Public marketing/landing page
-│   ├── auth/                 # Login & Signup pages
-│   ├── DashboardPage/        # Main dashboard page
-│   ├── StudentPage/          # Student list page
-│   ├── TeacherPage/          # Teacher list page
-│   ├── AttendancePage/       # Attendance overview, mark & report pages
-│   ├── FinancePage/          # Finance management page
-│   └── FoodPage/             # Food/cafeteria page
-│
-├── component/                # Reusable UI components
-│   ├── Auth/                 # AuthLayout wrapper
-│   ├── Chat/                 # Chat page + sidebar + window + message bubble
-│   ├── commonComponent/      # Pagination, search header
-│   ├── DashBoard/            # Charts, calendar, unpaid students widgets
-│   ├── DashboardLayout/      # Persistent layout (sidebar + outlet)
-│   ├── Event/                # Event management component
-│   ├── Finance/              # Finance components & styles
-│   ├── Food/                 # Food list, details, percentage circle
-│   ├── LatestActivity/       # Activity feed component
-│   ├── SideBar/              # Sidebar navigation component
-│   ├── Student/              # Add student form
-│   ├── Teacher/              # Add teacher form
-│   └── User/                 # User profile component
-│
-├── store/                    # Redux state management
-│   ├── store.js              # Redux store configuration
-│   └── slices/
-│       ├── authSlice.js      # Authentication state + async thunks
-│       ├── studentsSlice.js  # Students CRUD + search/filter
-│       ├── teachersSlice.js  # Teachers CRUD + search/filter
-│       ├── attendanceSlice.js  # Attendance tracking + reporting
-│       ├── financeSlice.js   # Fee payments + weekly income
-│       ├── eventsSlice.js    # School events CRUD
-│       └── activitiesSlice.js  # Auto-generated activity log
-│
-├── services/
-│   └── firebase.js           # Firebase app init + Auth export
-│
-├── utils/
-│   └── mockData/             # Static seed data for development
-│       ├── studentsData.js
-│       ├── teacherData.js
-│       ├── attendanceData.js
-│       ├── chatMockData.js
-│       └── mockFoodData.js
-│
-└── assets/
-    └── SideBarIcone/         # PNG icons used in the sidebar navigation
+└── main.jsx                  # React entry point
+```
+
+#### Folder Structure Diagram (Mermaid)
+
+```mermaid
+flowchart TD
+    A[src/] --> B[app]
+    A --> C[features]
+    A --> D[layouts]
+    A --> E[shared]
+    A --> F[services]
+    A --> G[assets]
+    A --> H[index.css]
+    A --> I[main.jsx]
+
+    B --> B1[App.jsx]
+    B --> B2[routes/AppRoutes.jsx]
+    B --> B3[store/store.js]
+
+    C --> C1[auth]
+    C --> C2[students]
+    C --> C3[teachers]
+    C --> C4[attendance]
+    C --> C5[finance]
+    C --> C6[events]
+    C --> C7[dashboard]
+    C --> C8[chat]
+    C --> C9[food]
+    C --> C10[landing]
+    C --> C11[notfound]
+    C --> C12[user]
+
+    C1 --> C1a[pages]
+    C1 --> C1b[components]
+    C1 --> C1c[store]
+    C2 --> C2a[pages]
+    C2 --> C2b[components]
+    C2 --> C2c[store]
+    C2 --> C2d[mock]
+```
+
+#### At-a-Glance
+
+```
+app/        -> app shell, routes, store setup
+features/   -> feature modules (UI + store + mock + styles)
+layouts/    -> reusable app shells (sidebar, layout)
+shared/     -> shared UI components (Pagination, SearchHeader)
+services/   -> external integrations (Firebase)
+assets/     -> static images/icons
 ```
 
 ---
